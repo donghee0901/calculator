@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DONGHEE</title>
+    <style>
+        button{
+            z-index: 1;
+            border: 0;
+            outline: 0;
+            cursor: pointer;
+            position: absolute;
+            text-align: center;
+            font-weight: bold;
+            line-height: 49px;
+            font-size: 22px;
+            border-radius: 8px;
+            width: 58px;
+            height: 49px;
+            border:1px solid #474747;
+            box-shadow:  3px 2px #474747;
+        }
+        button:active{
+            box-shadow:  1px 0px #474747;
+        }
+        #calBody{
+            z-index: 0;
+            border-radius: 26px;
+            width: 349px;
+            height: 626px;
+            position: absolute;
+            margin: 6px 5px;
+            background-color: black;
+            box-shadow:  3px 3px black;
+        }
+        #calBody2{
+            z-index: 0;
+            width: 349px;
+            height: 30px;
+            position: absolute;
+            margin: 142px 5px;
+            background-color: #6A6A6A;
+        }
+        #calBody3{
+            z-index: 0;
+            width: 349px;
+            height: 460px;
+            position: absolute;
+            margin: 172px 5px;
+            background-color: #D8D8D8;
+            border-radius: 0px 0px 26px 26px;
+        }
+        #screen{
+            z-index: 1;
+            border:1px solid #707070;
+            border-radius: 7px;
+            width: 295px;
+            height: 50px;
+            position: absolute;
+            margin: 60px 25px;
+            background-color: #E0ECF5;
+            font-size: 40px;
+            text-align: right;
+            color: #707070;
+            padding-top: 15px;
+            padding-right: 10px;
+            padding-left: 10px;
+            overflow-x: scroll;
+        }
+        #screen::-webkit-scrollbar {
+            display: none;
+        }
+        #saveNumber{
+            z-index: 1;
+            position: absolute;
+            padding-right: 10px;
+            padding-left: 10px;
+            width: 295px;
+            margin: 65px 25px;
+            font-size: 15px;
+            text-align: right;
+            color: #707070;
+        }
+
+        .calNumber{
+            color: white;
+            background-color: #6B6B6B;
+        }
+
+        #num1{
+            margin: 491px 80px;
+        }
+        #num1:active{
+            margin: 493px 82px;
+        }
+        #num2{
+            margin: 491px 150px;
+        }
+        #num2:active{
+            margin: 493px 152px;
+        }
+        #num3{
+            margin: 491px 220px;
+        }
+        #num3:active{
+            margin: 493px 222px;
+        }
+        #num4{
+            margin: 415px 80px;
+        }
+        #num4:active{
+            margin: 417px 82px;
+        }
+        #num5{
+            margin: 415px 150px;
+        }
+        #num5:active{
+            margin: 417px 152px;
+        }
+        #num6{
+            margin: 415px 220px;
+        }
+        #num6:active{
+            margin: 417px 222px;
+        }
+        #num7{
+            margin: 340px 80px;
+        }
+        #num7:active{
+            margin: 342px 82px;
+        }
+        #num8{
+            margin: 340px 150px;
+        }
+        #num8:active{
+            margin: 342px 152px;
+        }
+        #num9{
+            margin: 340px 220px;
+        }
+        #num9:active{
+            margin: 342px 222px;
+        }
+        #num0{
+            margin: 566px 10px;
+        }
+        #num0:active{
+            margin: 568px 12px;
+        }
+        #num00{
+            margin: 566px 80px;
+        }
+        #num00:active{
+            margin: 568px 82px;
+        }
+        #numComma{
+            margin: 566px 150px;
+        }
+        #numComma:active{
+            margin: 568px 152px;
+        }
+
+        
+        .calOperator{
+            color: white;
+            background-color: #BEBEBE;
+        }
+
+        #division{
+            margin: 264px 290px;
+        }
+        #division:active{
+            margin: 266px 292px;
+        }
+        #multiplication{
+            margin: 340px 290px;
+        }
+        #multiplication:active{
+            margin: 342px 292px;
+        }
+        #minus{
+            margin: 415px 290px;
+        }
+        #minus:active{
+            margin: 417px 292px;
+        }
+        #plus{
+            height: 122px;
+            margin: 491px 290px;
+        }
+        #plus:active{
+            margin: 493px 292px;
+        }
+        #equal{
+            margin: 566px 220px;
+        }
+        #equal:active{
+            margin: 568px 222px;
+        }
+        #C{
+            margin: 415px 10px;
+            color: #FF8800;
+        }
+        #C:active{
+            margin: 417px 12px;
+        }
+        #AC{
+            margin: 491px 10px;
+            color: #FF8800;
+        }
+        #AC:active{
+            margin: 493px 12px;
+        }
+        #remainder{
+            margin: 189px 80px;
+        }
+        #remainder:active{
+            margin: 191px 82px;
+        }
+        #sqrt{
+            margin: 189px 150px;
+        }
+        #sqrt:active{
+            margin: 191px 152px;
+        }
+        #backspace{
+            margin: 189px 220px;
+        }
+        #backspace:active{
+            margin: 191px 222px;
+        }
+        
+        
+        .calButton{
+            font-weight: normal;
+            color: white;
+            background-color: #BEBEBE;
+        }
+
+        #M_EX{
+            font-size: 15px;
+            margin: 189px 10px;
+        }
+        #M_EX:active{
+            margin: 191px 12px;
+        }
+        #GT{
+            margin: 189px 290px;
+        }
+        #GT:active{
+            margin: 191px 292px;
+        }
+        #TAXminus{
+            border-radius: 6px;
+            line-height: 19px;
+            width: 43px;
+            height: 19px;
+            font-size: 12px;
+            margin: 146px 214px;
+        }
+        #TAXminus:active{
+            margin: 148px 216px;
+        }
+        #TAXplus{
+            border-radius: 6px;
+            line-height: 19px;
+            width: 43px;
+            height: 19px;
+            font-size: 12px;
+            margin: 146px 276px;
+        }
+        #TAXplus:active{
+            margin: 148px 278px;
+        }
+        #plusMinus{
+            margin: 340px 10px;
+        }
+        #plusMinus:active{
+            margin: 342px 12px;
+        }
+        #MC{
+            margin: 264px 10px;
+        }
+        #MC:active{
+            margin: 266px 12px;
+        }
+        #MR{
+            margin: 264px 80px;
+        }
+        #MR:active{
+            margin: 266px 82px;
+        }
+        #Mminus{
+            margin: 264px 150px;
+        }
+        #Mminus:active{
+            margin: 266px 152px;
+        }
+        #Mplus{
+            margin: 264px 220px;
+        }
+        #Mplus:active{
+            margin: 266px 222px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div id="calBody"></div>
+    <div id="calBody2"></div>
+    <div id="calBody3"></div>
+    <div id="screen">0</div>
+    <div id="saveNumber"></div>
+
+    <button type="button" class="calNumber" id="num1" onclick="numberClick('1')">1</button>
+    <button type="button" class="calNumber" id="num2" onclick="numberClick('2')">2</button>
+    <button type="button" class="calNumber" id="num3" onclick="numberClick('3')">3</button>
+    <button type="button" class="calNumber" id="num4" onclick="numberClick('4')">4</button>
+    <button type="button" class="calNumber" id="num5" onclick="numberClick('5')">5</button>
+    <button type="button" class="calNumber" id="num6" onclick="numberClick('6')">6</button>
+    <button type="button" class="calNumber" id="num7" onclick="numberClick('7')">7</button>
+    <button type="button" class="calNumber" id="num8" onclick="numberClick('8')">8</button>
+    <button type="button" class="calNumber" id="num9" onclick="numberClick('9')">9</button>
+    <button type="button" class="calNumber" id="num0" onclick="numberClick('0')">0</button>
+    <button type="button" class="calNumber" id="num00" onclick="numberClick('00')">00</button>
+    <button type="button" class="calNumber" id="numComma" onclick="numberClick('.')">·</button>
+
+    
+    <button type="button" class="calOperator" id="division" onclick="operatorClick('÷')">÷</button>
+    <button type="button" class="calOperator" id="multiplication" onclick="operatorClick('×')">×</button>
+    <button type="button" class="calOperator" id="minus" onclick="operatorClick('-')">-</button>
+    <button type="button" class="calOperator" id="plus" onclick="operatorClick('+')">+</button>
+    <button type="button" class="calOperator" id="equal" onclick="operatorClick('=')">=</button>
+    <button type="button" class="calOperator" id="C" onclick="operatorClick('C')">C</button>
+    <button type="button" class="calOperator" id="AC" onclick="operatorClick('AC')">AC</button>
+    <button type="button" class="calOperator" id="remainder" onclick="operatorClick('%')">%</button>
+    <button type="button" class="calOperator" id="backspace" onclick="operatorClick('▶')">▶</button>
+    <button type="button" class="calOperator" id="sqrt" onclick="operatorClick('√')">√</button>
+    
+
+    <button type="button" class="calButton" id="M_EX">M/EX</button>
+    <button type="button" class="calButton" id="GT">GT</button>
+    <button type="button" class="calButton" id="TAXminus">TAX-</button>
+    <button type="button" class="calButton" id="TAXplus">TAX+</button>
+    <button type="button" class="calButton" id="plusMinus">+/-</button>
+    <button type="button" class="calButton" id="MC">MC</button>
+    <button type="button" class="calButton" id="MR">MR</button>
+    <button type="button" class="calButton" id="Mminus">M-</button>
+    <button type="button" class="calButton" id="Mplus">M+</button>
+    
+    
+    
+    
+    
+    <script>
+        var isOnCalculation = false;
+        var isEqual = true;
+        var saveOperator;
+        var firstNum;
+        var secondNum;
+        var result;
+        
+        function numberClick(num)
+        {
+            if(Number(document.getElementById("screen").innerText) == 0 && Number(num) == 0)
+            {
+                return;
+            }
+            if(isEqual == true)
+            {
+                document.getElementById("screen").innerText = num;
+                isEqual = false;
+            }
+            else{
+                var text = document.getElementById("screen").innerText;
+                document.getElementById("screen").innerText = text + num;
+            }
+        }
+
+        function operatorClick(operator)
+        {
+            switch(operator)
+            {
+            case '%':
+                return;
+            case '▶':
+                return;
+            case '√':
+                return;
+            }
+            if(operator == 'C'){
+                document.getElementById("screen").innerText = "0";
+                isEqual = true;
+                return;
+            }
+            if(operator == 'AC'){
+                document.getElementById("screen").innerText = "0";
+                document.getElementById("saveNumber").innerText = "";
+                isOnCalculation = false;
+                isEqual = true;
+                return;
+            }
+            if(isOnCalculation == true)
+            {
+                secondNum = document.getElementById("screen").innerText;
+                switch(saveOperator)
+                {
+                case '÷':
+                    result = Number(firstNum)/Number(secondNum);
+                    break;
+                case '×':
+                    result = Number(firstNum)*Number(secondNum);
+                    break;
+                case '-':
+                    result = Number(firstNum)-Number(secondNum);
+                    break;
+                case '+':
+                    result = Number(firstNum)+Number(secondNum);
+                    break;
+                }
+
+                document.getElementById("saveNumber").innerText = "";
+                document.getElementById("screen").innerText = result;
+
+                if(operator == '=')
+                {
+                    isOnCalculation = false;
+                    isEqual = true;
+                    return;
+                }
+            }
+
+            if(operator == '=')
+            {
+                return;
+            }
+            var testnum = document.getElementById("screen").innerText;
+            
+            firstNum = testnum;
+            saveOperator = operator;
+            document.getElementById("screen").innerText = "";
+
+            document.getElementById("saveNumber").innerText = firstNum + " " + saveOperator;
+            isOnCalculation = true;
+        }
+    </script>
+</body>
+</html>
